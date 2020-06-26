@@ -4,7 +4,10 @@ from joycontrol.controller_state import ControllerState, button_push
 
 async def run(controller_state: ControllerState):
     stick = controller_state.l_stick_state
-    
+    stick.set_center()
+    centerH = stick.get_h()
+    centerV = stick.get_v()
+
     user_input = asyncio.ensure_future(
         ainput(prompt='Running plugin... Press <enter> to stop.')
     )
@@ -14,10 +17,6 @@ async def run(controller_state: ControllerState):
         await asyncio.sleep(0.3)
 
     speed = 0x100
-    stick.set_center()
- 
-    centerH = stick.get_h()
-    centerV = stick.get_v()
     move_path = ((-1, 0), (0, -1), (1, 0), (0, 1))
 
     while not user_input.done():

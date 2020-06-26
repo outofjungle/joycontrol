@@ -72,6 +72,8 @@ async def run_plugin(controller_state: ControllerState, plugin_source):
 
     await func(controller_state)
     
+    del(plugin)
+    
 
 
 async def _main(args):
